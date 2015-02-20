@@ -1,12 +1,12 @@
 somacli
 =======
 
-SomaFM internet radio player bash script utilizing mplayer.
+SomaFM internet radio player utilizing mplayer entirely in bash.
 
 
 running
 =======
-```
-git clone https://github.com/bcicen/somacli.git; cd somacli/
+```bash
+wget https://raw.githubusercontent.com/bcicen/somacli/master/somacli.sh
 chmod +x somacli.sh && ./somacli.sh
 ```
