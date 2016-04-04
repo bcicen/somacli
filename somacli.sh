@@ -38,7 +38,7 @@ function selectstation() {
 
 function getandplay () {
     echo "${boldtext}Retrieving ${stationnames[$selection]}${normaltext}"
-    $WGET -q ${baseurl}/${stationslist[$selection]}.pls -O ${tmpdir}somafm.pls
+    $WGET -q ${baseurl}/${stationslist[$selection]} -O ${tmpdir}somafm.pls
     mplayer -really-quiet -playlist ${tmpdir}somafm.pls < /dev/null 2> /dev/null &
     mplayerpid=$!
 }
