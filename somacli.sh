@@ -1,63 +1,82 @@
 #!/bin/bash
+tmpdir="/tmp"
 baseurl="http://somafm.com"
 stationsfile="stations.txt"
-tmpdir="/tmp/"
-WGET="/usr/bin/wget"
-MPLAYER="/usr/bin/mplayer"
-boldtext=`tput bold`
-normaltext=`tput sgr0`
 
-stationnames=()
-stationslist=()
-stationdescription=()
+function echo_bold() {
+  echo_opts="-e"
+  [[ $1 == "-n" ]] && {
+    shift 1
+    echo_opts+=" -n"
+  }
+  echo $echo_opts "\033[1m$@\033[0m"
+}
 
-while read line; do
-    name=$(echo "$line" | cut -f1 -d\|)
-    sname=$(echo "$line" | cut -f2 -d\|)
-    desc=$(echo "$line" | cut -f3 -d\|)
+function read_stations() {
+  playlists=()
+  genres=()
+  stationnames=()
+  descriptions=()
+
+  while IFS="|" read name genre playlist desc; do
     stationnames+=("$name")
-    stationslist+=("$sname")
-    stationdescription+=("$desc")
-done < $stationsfile
+    genres+=("$genre")
+    playlists+=("$playlist")
+    descriptions+=("$desc")
+  done < $1
 
-function selectstation() {
-    selected=""
-    stationcount=$(( ${#stationnames[@]} - 1 ))
-    while ((! selected)); do
-        clear
-        for stationnumber in $( seq 0 ${stationcount}); do
-            echo "${boldtext}$stationnumber ) ${stationnames[$stationnumber]}" 
-            echo "${normaltext}	${stationdescription[$stationnumber]}" 
-        done
-        read -p 'Selection? ' selection
-        ##check for input validity
-        [[ $selection =~ ^[[:digit:]]+$ ]] && (($selection <= $stationcount)) && selected=1
-        if ((! selected)); then echo "Invalid selection"; sleep 1; fi
-    done
+  stationcount=$(( ${#stationnames[@]} - 1 ))
 }
 
-function getandplay () {
-    echo "${boldtext}Retrieving ${stationnames[$selection]}${normaltext}"
-    $WGET -q ${baseurl}/${stationslist[$selection]} -O ${tmpdir}somafm.pls
-    mplayer -really-quiet -playlist ${tmpdir}somafm.pls < /dev/null 2> /dev/null &
-    mplayerpid=$!
+function select_station() {
+  for i in $(seq 0 $stationcount); do
+    [[ $i -le 9 ]] && echo_bold -n " $i) ${stationnames[$i]}"
+    [[ $i -ge 10 ]] && echo_bold -n "$i) ${stationnames[$i]}"
+    echo " ${genres[$i]}"
+    echo "    ${descriptions[$i]}"
+  done
+
+  while :; do
+    read -p 'Select station: ' selection
+    # validate input
+    [[ $selection =~ ^[[:digit:]]+$ ]] && (($selection <= $stationcount)) && break
+    echo "invalid selection"
+  done
 }
+
+function fetch_and_play () {
+  playlist=${playlists[$selection]}
+  filepath="${tmpdir}/${playlist}"
+
+  [[ ! -f "$filepath" ]] && {
+    echo_bold "Retrieving playlist..."
+    wget -q ${baseurl}/${playlist} -O $filepath
+  }
+
+  echo_bold "Playing ${stationnames[$selection]}"
+  mplayer -really-quiet -playlist $filepath < /dev/null 2> /dev/null &
+  mplayerpid=$!
+}
+
+read_stations $stationsfile
 
 while :; do 
-    optaction=0
-    selectstation
-    getandplay
-    while ((! optaction)); do
-        echo "${boldtext}C${normaltext}hange station ${boldtext}Q${normaltext}uit"
-        read -n1 activeopt
-        case $activeopt in
-            [cC]) 
-                kill $mplayerpid && selected=0 && optaction=1
-                ;;
-            [qQ])
-                kill $mplayerpid && exit 0
-                ;;
-            *) echo "Invalid option";;
-        esac
-    done
+  select_station
+  fetch_and_play
+  isplaying=1
+
+  echo "$(echo_bold -n C)hange station $(echo_bold -n Q)uit"
+  while ((isplaying)); do
+    read -sn1 activeopt
+    case $activeopt in
+      [cC])
+        kill $mplayerpid
+        isplaying=0
+        ;;
+      [qQ])
+        kill $mplayerpid
+        exit 0
+        ;;
+    esac
+  done
 done

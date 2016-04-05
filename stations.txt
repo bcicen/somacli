@@ -1,32 +1,32 @@
-Groove Salad (ambient/electronica)|/groovesalad.pls|A nicely chilled plate of ambient/downtempo beats and grooves.
-Secret Agent (lounge)|/secretagent.pls|The soundtrack for your stylish, mysterious, dangerous life. For Spies and PIs too!
-Space Station Soma (electronica)|/spacestation.pls|Tune in, turn on, space out. Spaced-out ambient and mid-tempo electronica.
-Drone Zone (ambient)|/dronezone.pls|Served best chilled, safe with most medications. Atmospheric textures with minimal beats.
-Left Coast 70s (70s/rock)|/seventies.pls|NEW! Mellow album rock from the Seventies. Yacht friendly.
-Lush (electronica)|/lush.pls|Sensuous and mellow vocals, mostly female, with an electronic influence.
-DEF CON Radio (electronica/specials)|/defcon.pls|Music for Hacking. The DEF CON Year-Round Channel.
-Fluid (electronica/hiphop)|/fluid.pls|NEW! Drown in the electronic sound of instrumental hiphop, future soul and liquid trap.
-Digitalis (electronica/alternative)|/digitalis.pls|Digitally affected analog rock to calm the agitated heart.
-Indie Pop Rocks! (alternative/rock)|/indiepop.pls|New and classic favorite indie pop tracks.
-BAGeL Radio (alternative/rock)|/bagel.pls|What alternative rock radio should sound like.
-Metal Detector (metal)|/metal.pls|NEW! From black to doom, prog to sludge, thrash to post, stoner to crossover, punk to industrial.
-The Trip (electronica)|/thetrip.pls|Progressive house / trance. Tip top tunes.
-cliqhop idm (electronica)|/cliqhop.pls|Blips'n'beeps backed mostly w/beats. Intelligent Dance Music.
-Dub Step Beyond (electronica)|/dubstep.pls|Dubstep, Dub and Deep Bass. May damage speakers at high volume.
-PopTron (alternative)|/poptron.pls|Electropop and indie dance rock with sparkle and pop.
-ThistleRadio (celtic/world)|/thistle.pls|Exploring music from Celtic roots and branches
-Folk Forward (folk/alternative)|/folkfwd.pls|Indie Folk, Alt-folk and the occasional folk classics.
-Boot Liquor (americana)|/bootliquor.pls|Americana Roots music for Cowhands, Cowpokes and Cowtippers
-Seven Inch Soul (oldies)|/7soul.pls|Vintage soul tracks from the original 45 RPM vinyl.
-Earwaves (experimental)|/earwaves.pls|Spanning the history of electronic and experimental music from the early pioneers to the latest innovators.
-Mission Control (ambient/electronica)|/missioncontrol.pls|Celebrating NASA and Space Explorers everywhere.
-Illinois Street Lounge (lounge)|/illstreet.pls|Classic bachelor pad, playful exotica and vintage music of tomorrow.
-Beat Blender (electronica)|/beatblender.pls|A late night blend of deep-house and downtempo chill.
-SF 10-33 (ambient/news)|/sf1033.pls|Ambient music mixed with the sounds of San Francisco public safety radio traffic.
-Covers (eclectic)|/covers.pls|Just covers. Songs you know by artists you don't. We've got you covered.
-Underground 80s (alternative/electronica)|/u80s.pls|Early 80s UK Synthpop and a bit of New Wave.
-Deep Space One (ambient)|/deepspaceone.pls|Deep ambient electronic, experimental and space music. For inner and outer space exploration.
-Doomed (ambient/industrial)|/doomed.pls|Dark industrial/ambient music for tortured souls.
-Sonic Universe (jazz)|/sonicuniverse.pls|Transcending the world of jazz with eclectic, avant-garde takes on tradition.
-Suburbs of Goa (world)|/suburbsofgoa.pls|Desi-influenced Asian world beats and beyond.
-Black Rock FM (eclectic)|/brfm.pls|From the Playa to the world, back for the 2015 Burning Man festival.
+Groove Salad|(ambient/electronica)|/groovesalad.pls|A nicely chilled plate of ambient/downtempo beats and grooves.
+Secret Agent|(lounge)|/secretagent.pls|The soundtrack for your stylish, mysterious, dangerous life. For Spies and PIs too!
+Space Station Soma|(electronica)|/spacestation.pls|Tune in, turn on, space out. Spaced-out ambient and mid-tempo electronica.
+Drone Zone|(ambient)|/dronezone.pls|Served best chilled, safe with most medications. Atmospheric textures with minimal beats.
+Left Coast 70s|(70s/rock)|/seventies.pls|NEW! Mellow album rock from the Seventies. Yacht friendly.
+Lush|(electronica)|/lush.pls|Sensuous and mellow vocals, mostly female, with an electronic influence.
+DEF CON Radio|(electronica/specials)|/defcon.pls|Music for Hacking. The DEF CON Year-Round Channel.
+Fluid|(electronica/hiphop)|/fluid.pls|NEW! Drown in the electronic sound of instrumental hiphop, future soul and liquid trap.
+Digitalis|(electronica/alternative)|/digitalis.pls|Digitally affected analog rock to calm the agitated heart.
+Indie Pop Rocks!|(alternative/rock)|/indiepop.pls|New and classic favorite indie pop tracks.
+BAGeL Radio|(alternative/rock)|/bagel.pls|What alternative rock radio should sound like.
+Metal Detector|(metal)|/metal.pls|NEW! From black to doom, prog to sludge, thrash to post, stoner to crossover, punk to industrial.
+The Trip|(electronica)|/thetrip.pls|Progressive house / trance. Tip top tunes.
+cliqhop idm|(electronica)|/cliqhop.pls|Blips'n'beeps backed mostly w/beats. Intelligent Dance Music.
+Dub Step Beyond|(electronica)|/dubstep.pls|Dubstep, Dub and Deep Bass. May damage speakers at high volume.
+PopTron|(alternative)|/poptron.pls|Electropop and indie dance rock with sparkle and pop.
+ThistleRadio|(celtic/world)|/thistle.pls|Exploring music from Celtic roots and branches
+Folk Forward|(folk/alternative)|/folkfwd.pls|Indie Folk, Alt-folk and the occasional folk classics.
+Boot Liquor|(americana)|/bootliquor.pls|Americana Roots music for Cowhands, Cowpokes and Cowtippers
+Seven Inch Soul|(oldies)|/7soul.pls|Vintage soul tracks from the original 45 RPM vinyl.
+Earwaves|(experimental)|/earwaves.pls|Spanning the history of electronic and experimental music from the early pioneers to the latest innovators.
+Mission Control|(ambient/electronica)|/missioncontrol.pls|Celebrating NASA and Space Explorers everywhere.
+Illinois Street Lounge|(lounge)|/illstreet.pls|Classic bachelor pad, playful exotica and vintage music of tomorrow.
+Beat Blender|(electronica)|/beatblender.pls|A late night blend of deep-house and downtempo chill.
+SF 10-33|(ambient/news)|/sf1033.pls|Ambient music mixed with the sounds of San Francisco public safety radio traffic.
+Covers|(eclectic)|/covers.pls|Just covers. Songs you know by artists you don't. We've got you covered.
+Underground 80s|(alternative/electronica)|/u80s.pls|Early 80s UK Synthpop and a bit of New Wave.
+Deep Space One|(ambient)|/deepspaceone.pls|Deep ambient electronic, experimental and space music. For inner and outer space exploration.
+Doomed|(ambient/industrial)|/doomed.pls|Dark industrial/ambient music for tortured souls.
+Sonic Universe|(jazz)|/sonicuniverse.pls|Transcending the world of jazz with eclectic, avant-garde takes on tradition.
+Suburbs of Goa|(world)|/suburbsofgoa.pls|Desi-influenced Asian world beats and beyond.
+Black Rock FM|(eclectic)|/brfm.pls|From the Playa to the world, back for the 2015 Burning Man festival.
