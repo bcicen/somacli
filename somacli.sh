@@ -2,6 +2,7 @@
 tmpdir="/tmp"
 baseurl="http://somafm.com"
 stationsfile="stations.txt"
+show_descriptions=0
 
 function echo_bold() {
   echo_opts="-e"
@@ -33,11 +34,16 @@ function select_station() {
     [[ $i -le 9 ]] && echo_bold -n " $i) ${stationnames[$i]}"
     [[ $i -ge 10 ]] && echo_bold -n "$i) ${stationnames[$i]}"
     echo " ${genres[$i]}"
-    echo "    ${descriptions[$i]}"
+    ((show_descriptions % 2)) && echo "    ${descriptions[$i]}"
   done
+  echo_bold "d) toggle descriptions"
 
   while :; do
     read -p 'Select station: ' selection
+    [[ $selection == "d" ]] && {
+      let show_descriptions++
+      select_station
+    }
     # validate input
     [[ $selection =~ ^[[:digit:]]+$ ]] && (($selection <= $stationcount)) && break
     echo "invalid selection"
