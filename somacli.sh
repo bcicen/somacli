@@ -1,7 +1,7 @@
 #!/bin/bash
 tmpdir="/tmp"
 baseurl="http://somafm.com"
-stationsfile="stations.txt"
+stationsfile="${SOMACLI_HOME:=.}/stations.txt"
 show_descriptions=0
 
 function echo_bold() {
