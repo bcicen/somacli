@@ -1,8 +1,16 @@
 #!/bin/bash
 tmpdir="/tmp"
 baseurl="http://somafm.com"
-stationsfile="${SOMACLI_HOME:=.}/stations.txt"
+stationsfile="${SOMACLI_HOME:=$HOME}/.somacli-stations"
+stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations.txt"
 show_descriptions=0
+
+function init_config() {
+  [ ! -f $stationsfile ] && {
+    echo "retrieving stations file..."
+    curl -Lso $stationsfile $stationsfile_src
+  }
+}
 
 function echo_bold() {
   echo_opts="-e"
@@ -64,9 +72,10 @@ function fetch_and_play () {
   mplayerpid=$!
 }
 
+init_config
 read_stations $stationsfile
 
-while :; do 
+while :; do
   select_station
   fetch_and_play
   isplaying=1
