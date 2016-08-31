@@ -2,16 +2,18 @@
 
 Commandline SomaFM internet radio player in bash
 
-## running
+## Installing
+
 ```bash
-git clone https://github.com/bcicen/somacli.git
-cd somacli
-./somacli.sh
+curl -Lso somacli https://raw.githubusercontent.com/bcicen/somacli/master/somacli.sh
+chmod +x somacli
+mv somacli /usr/local/bin/
 ```
 
-## installing
+## Usage
+
 ```bash
-cd somacli
-ln -sv $PWD/somacli.sh /usr/local/bin/somacli
-echo "export SOMACLI_HOME=$PWD" >> ~/.bashrc
+somacli
 ```
+
+On initial run, somacli will fetch the latest stationlist
