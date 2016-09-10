@@ -1,8 +1,8 @@
 #!/bin/bash
 tmpdir="/tmp"
 baseurl="http://somafm.com"
-stationsfile="${SOMACLI_HOME:=$HOME}/.somacli-stations"
-stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations.txt"
+stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
+stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
 show_descriptions=0
 
 function init_config() {
