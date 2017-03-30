@@ -16,6 +16,8 @@ function init_config() {
   }
 }
 
+function echo_green() { echo -e "\033[0;32m$@\033[0m"; }
+
 function echo_bold() {
   echo_opts="-e"
   [[ $1 == "-n" ]] && {
@@ -85,6 +87,11 @@ function tail_mplayer() {
   tail -n+0 --pid=$mplayerpid -f $mplayerlog | while read line; do
     [[ "$line" == "ICY Info:"* ]] && {
       title=$(echo $line | cut -f2 -d\')
+      echo "$(echo_green now playing): $title"
+    }
+    [[ "$line" == "Name "* ]] && {
+      name=$(echo $line | cut -f2- -d\:)
+      echo "$(echo_green streaming): $name"
     }
   done
 }
