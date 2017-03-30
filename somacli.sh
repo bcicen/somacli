@@ -5,7 +5,7 @@ stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
 stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
 show_descriptions=0
 
-mplayerpid="/tmp"
+mplayerlog="${tmpdir}/somacli.log"
 mplayerpipe="${tmpdir}/somacli"
 [[ ! -e $mplayerpipe ]] && mkfifo $mplayerpipe
 
@@ -43,7 +43,7 @@ function read_stations() {
 
 function select_station() {
   for i in $(seq 0 $stationcount); do
-    [[ $i -le 9 ]] && echo_bold -n " $i) ${stationnames[$i]}"
+    [[ $i -le 9 ]] && echo_bold -n " $i) ${stationnames[$i]}" # left-pad single digits
     [[ $i -ge 10 ]] && echo_bold -n "$i) ${stationnames[$i]}"
     echo " ${genres[$i]}"
     ((show_descriptions % 2)) && echo "    ${descriptions[$i]}"
@@ -72,8 +72,21 @@ function fetch_and_play () {
   }
 
   echo_bold "Playing ${stationnames[$selection]}"
-  mplayer -slave -really-quiet -input file=$mplayerpipe -playlist $filepath < /dev/null 2> /dev/null &
+  mplayer -slave \
+          -quiet \
+          -input file=$mplayerpipe \
+          -playlist $filepath \
+          &> $mplayerlog &
   mplayerpid=$!
+  tail_mplayer &
+}
+
+function tail_mplayer() {
+  tail -n+0 --pid=$mplayerpid -f $mplayerlog | while read line; do
+    [[ "$line" == "ICY Info:"* ]] && {
+      title=$(echo $line | cut -f2 -d\')
+    }
+  done
 }
 
 init_config
