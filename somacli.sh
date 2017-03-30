@@ -1,5 +1,5 @@
 #!/bin/bash
-tmpdir="/tmp"
+tmpdir=${TMPDIR:=/tmp}
 baseurl="http://somafm.com"
 stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
 stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
