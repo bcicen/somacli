@@ -5,6 +5,10 @@ stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
 stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
 show_descriptions=0
 
+mplayerpid="/tmp"
+mplayerpipe="${tmpdir}/somacli"
+[[ ! -e $mplayerpipe ]] && mkfifo $mplayerpipe
+
 function init_config() {
   [ ! -f $stationsfile ] && {
     echo "retrieving stations file..."
@@ -68,7 +72,7 @@ function fetch_and_play () {
   }
 
   echo_bold "Playing ${stationnames[$selection]}"
-  mplayer -really-quiet -playlist $filepath < /dev/null 2> /dev/null &
+  mplayer -slave -really-quiet -input file=$mplayerpipe -playlist $filepath < /dev/null 2> /dev/null &
   mplayerpid=$!
 }
 
@@ -85,11 +89,11 @@ while :; do
     read -sn1 activeopt
     case $activeopt in
       [cC])
-        kill $mplayerpid
+        echo quit > $mplayerpipe
         isplaying=0
         ;;
       [qQ])
-        kill $mplayerpid
+        echo quit > $mplayerpipe
         exit 0
         ;;
     esac
