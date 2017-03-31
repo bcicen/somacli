@@ -84,7 +84,7 @@ function fetch_and_play () {
 }
 
 function tail_mplayer() {
-  tail -n+0 --pid=$mplayerpid -f $mplayerlog | while read line; do
+  tail -n+0 --pid=$mplayerpid -f $mplayerlog 2> /dev/null | while read line; do
     [[ "$line" == "ICY Info:"* ]] && {
       title=$(echo $line | cut -f2 -d\')
       echo "$(echo_green now playing): $title"
@@ -96,10 +96,17 @@ function tail_mplayer() {
   done
 }
 
+# stop mplayer, if running
+function stop_player() {
+  (kill -0 $mplayerpid 2> /dev/null) && {
+    echo quit > $mplayerpipe
+    wait $mplayerpid
+  }
+}
+
 function shutdown() {
-  echo quit > $mplayerpipe
-  wait $mplayerpid
-  rm -vf $mplayerpipe $mplayerlog
+  stop_player
+  rm $mplayerpipe
   exit 0
 }
 
@@ -116,7 +123,7 @@ while :; do
     read -sn1 activeopt
     case $activeopt in
       [cC])
-        echo quit > $mplayerpipe
+        stop_player
         isplaying=0
         ;;
       [qQ])
