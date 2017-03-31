@@ -6,7 +6,7 @@ stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/statio
 show_descriptions=0
 
 mplayerlog="${tmpdir}/somacli.log"
-mplayerpipe="${tmpdir}/somacli"
+mplayerpipe="${tmpdir}/somacli.fifo"
 [[ ! -e $mplayerpipe ]] && mkfifo $mplayerpipe
 
 function init_config() {
@@ -96,6 +96,13 @@ function tail_mplayer() {
   done
 }
 
+function shutdown() {
+  echo quit > $mplayerpipe
+  wait $mplayerpid
+  rm -vf $mplayerpipe $mplayerlog
+  exit 0
+}
+
 init_config
 read_stations $stationsfile
 
@@ -113,8 +120,7 @@ while :; do
         isplaying=0
         ;;
       [qQ])
-        echo quit > $mplayerpipe
-        exit 0
+        shutdown
         ;;
     esac
   done
