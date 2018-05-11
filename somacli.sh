@@ -4,12 +4,19 @@ baseurl="http://somafm.com"
 stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
 stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
 show_descriptions=0
+required="mplayer curl"
 
 mplayerlog="${tmpdir}/somacli.log"
 mplayerpipe="${tmpdir}/somacli.fifo"
 [[ ! -e $mplayerpipe ]] && mkfifo $mplayerpipe
 
 function init_config() {
+  for cmd in $required; do
+    (type $cmd &> /dev/null) || {
+      echo "missing required command: $cmd"
+      exit 1
+    }
+  done
   [ ! -f $stationsfile ] && {
     echo "retrieving stations file..."
     curl -Lso $stationsfile $stationsfile_src
