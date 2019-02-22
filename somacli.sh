@@ -93,8 +93,8 @@ function fetch_and_play () {
 function tail_mplayer() {
   tail -n+0 --pid=$mplayerpid -f $mplayerlog 2> /dev/null | while read line; do
     [[ "$line" == "ICY Info:"* ]] && {
-      title=$(echo $line | cut -f2 -d\')
-      echo "$(echo_green now playing): $title"
+      title=$(echo $line | cut -f2- -d\' | cut -f1 -d\;)
+      echo "$(echo_green now playing): ${title%\'}"
     }
     [[ "$line" == "Name "* ]] && {
       name=$(echo $line | cut -f2- -d\:)
