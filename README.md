@@ -21,3 +21,4 @@ somacli
 On initial run, somacli will fetch the latest stationlist
 
 [screencap]: http://i.imgur.com/yTYaqVA.png "somacli"
+
