@@ -1,13 +1,18 @@
 #!/bin/bash
-tmpdir=${TMPDIR:=/tmp}
 baseurl="http://somafm.com"
-stationsfile="${SOMACLI_HOME:=$HOME}/.somacli"
+xdgconfighome="${XDG_CONFIG_HOME:="$HOME/.config"}"
+xdgruntimedir="${XDG_RUNTIME_DIR:="/run/user/$UID"}"
+xdgdatahome="${XDG_DATA_HOME:="$HOME/.local/share"}"
 stationsfile_src="https://raw.githubusercontent.com/bcicen/somacli/master/stations"
 show_descriptions=0
 required="mplayer curl"
 
-mplayerlog="${tmpdir}/somacli.log"
-mplayerpipe="${tmpdir}/somacli.fifo"
+datadir="${xdgdatahome}/somacli"
+configbase="${xdgconfighome}/somacli"
+stationsfile="${configbase}/stations.txt"
+mplayerlog="${datadir}/somacli.log"
+mplayerpipe="${xdgruntimedir}/somacli.fifo"
+
 [[ ! -e $mplayerpipe ]] && mkfifo $mplayerpipe
 
 function init_config() {
@@ -17,6 +22,12 @@ function init_config() {
       exit 1
     }
   done
+  [ ! -d "$configbase" ] && {
+    mkdir -p "$configbase"
+  }
+  [ ! -d "$datadir" ] && {
+    mkdir -p "$datadir"
+  }
   [ ! -f $stationsfile ] && {
     echo "retrieving stations file..."
     curl -Lso $stationsfile $stationsfile_src
@@ -73,7 +84,7 @@ function select_station() {
 
 function fetch_and_play () {
   playlist=${playlists[$selection]}
-  filepath="${tmpdir}/${playlist}"
+  filepath="${datadir}/${playlist}"
 
   [[ ! -f "$filepath" ]] && {
     echo_bold "Retrieving playlist..."
