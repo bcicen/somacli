@@ -1,5 +1,5 @@
 #!/bin/bash
-baseurl="http://somafm.com"
+baseurl="https://somafm.com"
 xdgconfighome="${XDG_CONFIG_HOME:="$HOME/.config"}"
 xdgruntimedir="${XDG_RUNTIME_DIR:="/run/user/$UID"}"
 xdgdatahome="${XDG_DATA_HOME:="$HOME/.local/share"}"
